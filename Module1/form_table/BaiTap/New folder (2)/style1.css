@@ -1,0 +1,50 @@
+.ugedage {
+    width: 95%;
+   
+}
+.ye1{
+    background-color: yellow;
+}
+.ugedage td{
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 10px;
+    padding-bottom: 40px;
+    font-family: Comic Sans MS;
+    text-align: center;
+}
+.grayedout3{
+    background-color: blue;
+}
+
+.grayedout1 {
+    background-color: #b91b1b;
+    font-size: 12;
+}
+.grayedout {
+    background-color: d#320d77;
+    font-size: 12;
+}
+.grayedout5{
+  color: red;
+}
+.grayedout4{
+    color: #320d77;
+}
+
+.dato {
+    color: black;
+    font-size: 12;
+    text-decoration: none;
+}
+.ugedage th{
+    border-radius: 4px;
+    padding: 10px;
+    padding-bottom: 40px;
+    font-family: Comic Sans MS;
+    text-align: center;
+}
+.kkk{
+    text-align: center;
+    color:rgb(48, 17, 223)
+}

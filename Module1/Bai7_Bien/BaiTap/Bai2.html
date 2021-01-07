@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .d1 {
+        width: 80px;
+        height: 15px;
+      }
+      .tr {
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ứng dụng chuyển đổi tiền tệ</h1>
+    <div>
+      <table>
+        <tr>
+          <th>Amaunt</th>
+          <th>From Currency</th>
+          <th>To Currency</th>
+        </tr>
+        <tr>
+          <td><input type="text" id="amount" class="amount" /></td>
+          <td>
+            <select id="fromMoney">
+              <option value="Viet Nam">Viet Nam</option>
+              <option value="USD">USD</option>
+              <option value="Yen">Yen</option>
+            </select>
+          </td>
+          <td>
+            <select id="toMoney">
+              <option value="Yen">Yen</option>
+              <option value="USD">USD</option>
+              <option value="Viet Nam">Viet Nam</option>
+            </select>
+          </td>
+          <td><button onclick="convert()" id="convert()">convert</button></td>
+          <td><p id="result"></p></td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      function convert() {
+        let amount = document.getElementById("amount").value;
+        let fromMoney = document.getElementById("fromMoney").value;
+        let toMoney = document.getElementById("toMoney").value;
+        let result;
+
+        switch (fromMoney) {
+          case "Viet Nam":
+            if (toMoney === "USD") {
+              result = amount / 23000;
+            }
+            if (toMoney === "Yen") {
+              result = amount * 1900;
+            }
+
+            break;
+          case "USD":
+            if (toMoney === "Viet Nam") {
+              result = amount * 23000;
+            }
+            if (toMoney === "Yen") {
+              result = amount * 1900;
+            }
+            break;
+          case "Yen":
+            if (toMoney === "Viet Nam") {
+              result = amount * 1900;
+            }
+            if (toMoney === "USD") {
+              result = amount / 1900;
+            }
+            break;
+        }
+       
+        document.getElementById("result").innerHTML = result;
+      }
+    </script>
+  </body>
+</html>

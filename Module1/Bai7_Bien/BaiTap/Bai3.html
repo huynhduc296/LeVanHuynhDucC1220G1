@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>Caculator</div>
+    <div>
+      <input type="number" id="number1" />
+      <input type="number" id="number2" />
+      <br /><br />
+
+      <input type="submit" onclick="cong()" value="Addition" />
+      <input type="submit" onclick="tru()" value="Subtraction" />
+      <input type="submit" onclick="nhan()" value="Multiplication" />
+      <input type="submit" onclick="chia()" value="Division" />
+
+      <div id="result"></div>
+     
+    </div>
+    <script>
+      function cong() {
+        var numberIchi = parseFloat(document.getElementById("number1").value);
+        var numberNi = parseFloat(document.getElementById("number2").value);
+        let result = numberIchi + numberNi;
+        document.getElementById("result").innerHTML = result;
+      }
+      function tru() {
+        var numberIchi = parseFloat(document.getElementById("number1").value);
+        var numberNi = parseFloat(document.getElementById("number2").value);
+        result = numberIchi - numberNi;
+        document.getElementById("result").innerHTML = result;
+      }
+      function nhan() {
+        var numberIchi = parseFloat(document.getElementById("number1").value);
+        var numberNi = parseFloat(document.getElementById("number2").value);
+        result = numberIchi * numberNi;
+        document.getElementById("result").innerHTML = result;
+      }
+      function chia() {
+        var numberIchi = parseFloat(document.getElementById("number1").value);
+        var numberNi = parseFloat(document.getElementById("number2").value);
+        result = numberIchi / numberNi;
+        document.getElementById("result").innerHTML = result;
+      }
+    </script>
+  </body>
+</html>

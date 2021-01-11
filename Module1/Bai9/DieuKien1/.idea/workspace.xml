@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c204cf48-fc1f-499b-81c3-548a6e6a8edb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dk1.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dk1.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dk1.5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dk1.6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dk1.7.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../DieuKien2/kd2.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dk1.1.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1mlsLWMfHj74UhfMQMKDJsTTDGK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="sortByType" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DieuKien2" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\CodeGym\C1120G1LeVanHuynhDuc\Module1\Module1\Bai_9\BaiTap\Dieukien2" />
+      <recent name="D:\NEWCODEGYM\LeVanHuynhDuc_C1220G1\Module1\Bai9\DieuKien2" />
+      <recent name="D:\NEWCODEGYM\LeVanHuynhDuc_C1220G1\Module1\Bai9\DieuKien1" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c204cf48-fc1f-499b-81c3-548a6e6a8edb" name="Default Changelist" comment="" />
+      <created>1610079455069</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610079455069</updated>
+      <workItem from="1610079456475" duration="3876000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="568" y="227" key="#Notifications" timestamp="1610080684159">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="568" y="227" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1610080684159" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1610088827760">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1610088827760" />
+    <state x="405" y="276" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1610079713983">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="405" y="276" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1366.728@0.0.1366.728" timestamp="1610079713983" />
+  </component>
+</project>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let a=parseFloat(prompt("nhập a"))
+        let b=parseFloat(prompt("nhập b"))
+        let x =(-b/a);
+        if (a==0) {
+            if(b==0){
+                alert("vô số nghiệm")
+            }else {alert("vô nghiêm")
+            }
+        }else {
+            alert(x)
+        }
+        x=(a==0&&b==0) ? "vô số nghiệm" : (a==0||(b>0&&b<0)) ? "vô nghiệm" : ((-b)/a) ;
+    </script>
+</body>
+</html>

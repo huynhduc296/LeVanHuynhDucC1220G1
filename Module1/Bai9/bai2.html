@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="inputMonth" type="number">
+<input type="button" onclick="count()" value="Tính số ngày">
+<p id="add">
+
+</p>
+<script>
+
+    function count() {
+        let mouth=parseInt(document.getElementById("inputMonth").value);
+        let result;
+        switch (mouth) {
+            case 4:
+            case 6:
+            case 9:{
+                result = "Tháng có 30 ngày"
+                break;
+            }
+            case 2:{
+                result="tháng có 28 hoặc 29 ngày"
+                break;
+            }
+            default:{
+                result="tháng có 31 ngày"
+                break;
+            }
+        }
+        document.getElementById("add").innerText=" tháng" +  mouth + result;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = parseFloat(prompt("nhập a"));
+    let b = parseFloat(prompt("nhập b"));
+    let c = parseFloat(prompt("nhập c"));
+    let d = b * b - (4 * a * c);
+    let x = (-b) / (2 * a)
+    let x1 = (-b - Math.sqrt(b * b - (4 * a * c)));
+    let x2 = (-b + Math.sqrt(b * b - (4 * a * c)));
+    let x3 = (-c) / a;
+    if (a == 0) {
+        if (b == 0) {
+            if (c == 0) {
+                alert("vô số nghiệm")
+            } else {
+                alert("vô nghiệm")
+            }
+        } else {
+            x3 = (-c) / b;
+            alert(result);
+        }
+    } else if (d < 0) {
+        alert("vô nghiệm")
+    } else if (d == 0) {
+        x = (-b) / (2 * a);
+        alert(result);
+    } else {
+        alert("có 2 nghiệm" + " " + x1 + " " + x2);
+    }
+</script>
+</body>
+</html>

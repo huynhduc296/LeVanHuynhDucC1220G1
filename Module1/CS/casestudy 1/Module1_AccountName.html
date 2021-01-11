@@ -30,25 +30,27 @@
         }
 
     </style>
+
+    <script src="jss1.js"></script>
 </head>
 <body>
         <form>
             <table>
                 <tr>
                     <td><label  for="name">Họ và tên</label></td>
-                    <td><input type="text" id="name"class="tag" style="width: 60%"></td>
+                    <td><input type="text" id="name"class="tag" value="" style="width: 60%"></td>
                 </tr>
                 <tr>
-                    <td><label for="namberid">Số CMND</label></td>
-                    <td><input type="number"class="tag" id="namberid" style="width: 40%;"></td>
+                    <td><label for="numberId">Số CMND</label></td>
+                    <td><input type="number"class="tag" id="numberId" value="" style="width: 40%;"></td>
                 </tr>
                 <tr>
                     <td><label  for="day_of_birth">Ngày sinh</label></td>
-                    <td><input type="date"class="tag" id="day_of_birth"></td>
+                    <td><input type="date"class="tag" value="" id="day_of_birth"></td>
                 </tr>
                 <tr>
                     <td><label for="email">Email</label></td>
-                    <td><input type="email"class="tag" id="email" style="width: 50%;"></td>
+                    <td><input type="email"class="tag" value="" id="email" style="width: 50%;"></td>
                 </tr>
                 <tr>
                     <td><label for="address">Địa chỉ</label></td>
@@ -79,7 +81,7 @@
                 <tr>
                     <td><label for="discount">Mã giảm giá(%)</label></td>
                     <td>
-                        <input type="number"class="tag" id="discount" min="5" max="70">
+                        <input type="number"class="tag" value="" id="discount" min="5" max="70">
                     </td>
                 </tr>
                 <tr>
@@ -87,9 +89,9 @@
                         <fieldset>
                             <legend>Số lượng đi kèm</legend>
                             <label for="adult">Người lớn</label>
-                            <input type="number" min="1" class="tag" id="adult">
+                            <input type="number" min="1" class="tag" value="" id="adult">
                             <label for="child">Trẻ em</label>
-                            <input type="number" min="0" class="tag" id="child">
+                            <input type="number" min="0" class="tag" value="" id="child">
                         </fieldset>
                     </td>
                 </tr>
@@ -142,39 +144,39 @@
             <table border="1px">
                 <tr>
                     <td><label  for="name">Họ và tên</label></td>
-                    <td><input type="text"class="tag" style="width: 60%"></td>
+                    <td><input id="name1" type="text"class="tag" style="width: 60%"></td>
                 </tr>
                 <tr>
-                    <td><label for="namberid">Số CMND</label></td>
-                    <td><input type="number"class="tag" style="width: 40%;"></td>
+                    <td><label for="numberId">Số CMND</label></td>
+                    <td><input id="numberId1" type="number"class="tag" style="width: 40%;"></td>
                 </tr>
                 <tr>
                     <td><label  for="day_of_birth">Ngày sinh</label></td>
-                    <td><input type="date"class="tag"></td>
+                    <td><input id="day_of_birth1" type="date"class="tag"></td>
                 </tr>
                 <tr>
                     <td><label for="email">Email</label></td>
-                    <td><input type="email"class="tag" style="width: 50%;"></td>
+                    <td><input id="email1" type="email"class="tag" style="width: 50%;"></td>
                 </tr>
                 <tr>
                     <td><label for="address">Địa chỉ</label></td>
                     <td>
-                        <textarea  class="tag" cols="40" rows="1" style="width: 90%;"></textarea>
+                        <textarea id="address1" class="tag" cols="40" rows="1" style="width: 90%;"></textarea>
                     </td>
                     <td>
-                        <input class="tag" type="text">
+                        <input id="province1" class="tag" type="text">
                     </td>
                 </tr>
                 <tr>
                     <td><label >VIP</label></td>
                     <td>
-                        <input class="tag" type="text">
+                        <input id="vip1" class="tag" type="text">
                     </td>
                 </tr>
                 <tr>
                     <td><label for="discount">Mã giảm giá(%)</label></td>
                     <td>
-                        <input type="number"class="tag" min="5" max="70">
+                        <input id="discount1" type="number"class="tag" min="5" max="70">
                     </td>
                 </tr>
                 <tr>
@@ -182,38 +184,33 @@
                         <fieldset>
                             <legend>Số lượng đi kèm</legend>
                             <label for="adult">Người lớn</label>
-                            <input type="number" min="1" class="tag" >
+                            <input id="adult1" type="number" min="1" class="tag" >
                             <label for="child">Trẻ em</label>
-                            <input type="number" min="0" class="tag" >
+                            <input id="child1" type="number" min="0" class="tag" >
                         </fieldset>
                     </td>
                 </tr>
                 <tr>
                     <td><label  for="rent_days">Số ngày thuê</label></td>
                     <td>
-                        <input class="tag" type="text">
+                        <input id="rent_days1" class="tag" type="text">
                     </td>
                 </tr>
                 <tr>
                     <td><label for="service">Loại dịch vụ</label></td>
                     <td>
-                        <input type="text">
+                        <input id="service1" type="text">
                     </td>
                 </tr>
                 <tr>
                     <td><label >Loại phòng thuê</label></td>
                     <td>
-                        <input type="text">
+                        <input id="room_type1" type="text">
                     </td>
                 </tr>
+                <p id="tien">Tổng Tiền</p>
             </table>
         </form>
-        <form>
-            <p id="tien"></p>
-        </form>
-        <div id="showInformation">
 
-        </div>
-    <script src="j.js"></script>
 </body>
 </html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label><input type="text" id="english"></label>
+<input type="button" value="Search" onclick="search()">
+<p id="vn"></p>
+<script>
+    let english=["Handsome","travel",];
+    let vn=["Đẹp trai","dulịch"]
+    function search() {
+        let english =document.getElementById("english").value;
+            if(english.indexOf(english)!==1){
+                document.getElementById("vn").innerText= english+"có nghĩa là:"+vn[english.indexOf(english)];
+            }else{
+                    document.getElementById("vn").innerText ="We didn't find it out!"
+                }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   let a =[]
+   let number=a.length      
+        do {
+            number =parseInt(prompt("nhập số phần tử có trong mảng"))
+        }while (number<=0)
+            for(let i=0;i<number;i++){
+                a[i]=parseInt(prompt("nhâp phần tử"+i));
+            }
+            b = a.sort(function (c,g) {
+        return g - c;
+        });
+        document.write("Mảng a sau khi sắp xếp : "+b.join(" ")+"<br>");
+
+    
+    </script>
+</body>
+</html>

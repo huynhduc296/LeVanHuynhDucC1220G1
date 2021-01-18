@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+          let radius;
+    do {
+        radius = parseFloat(prompt("Nhập bán kính"));
+    } while (radius < 0);
+
+    document.write("Diện tích hình tròn có bán kính "+radius+" là : "+squareCircle(radius));
+    document.write("<br>");
+    document.write("Chu vi hình tròn có bán kính "+radius+" là : "+perimeterCircle(radius));
+
+
+    function squareCircle(radius) {
+        square = 3.14 * radius * radius;
+        return square.toFixed(2);
+    }
+    function perimeterCircle(radius) {
+        perimeter = 2 * 3.14 * radius;
+        return perimeter.toFixed(2);
+    }
+    </script>
+</body>
+</html>

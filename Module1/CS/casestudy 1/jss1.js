@@ -25,10 +25,43 @@ function confirm() {
             sv = 100;
             break;
     }
+    function checkName(name){
+        let testname = [];
+        name = name.trim().toLowerCase();
+        testname = name.split("");
+        for (let i = 0; i <name.length;i++){
+            if(testname[i]===" "&& testname[i+1]===" "){
+                testname.splice(i,1);
+                i--;
+            }
+            if(i===0||testname[i-1]===" "){
+                testname[i] = testname[i].toUpperCase();
+            }
+        }
+       return  testname.join('');
+
+    }
+
+
+    document.getElementById("numberId").addEventListener("change", checkId);
+        function checkId() {
+            var x = document.getElementById("editId");
+             cmnd =numberId;
+            if(cmnd.length===8){
+                if(cmnd>=0&&cmnd<=999999999){
+                }else {
+
+                }
+            }
+
+        }
+
+
+
     tien = sv * rent_days * (1 - discount / 100);
     document.getElementById("tien").innerHTML=parseInt(tien) + " $";
-    document.getElementById("name1").value = name;
-    document.getElementById("numberId1").value =numberId;
+    document.getElementById("name1").value = checkName(name);
+    document.getElementById("numberId1").value =checkId();
     document.getElementById("day_of_birth1").value= day_of_birth;
     document.getElementById("email1").value= email;
     document.getElementById("address1").value=address;

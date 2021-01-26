@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Apple{
+        constructor(weight) {
+            this.weight=weight;
+            this.status=true;
+        }
+        getWeight(){
+            return this.weight
+        }
+        setDecrease(){
+            return this.weight--
+        }
+        isEmpty(){
+            if(this.weight>0){
+                return this.status=true;
+            }else {
+                return  this.status=false
+            }
+        }
+
+    }
+    class Human{
+        constructor(name,weight,gender) {
+            this.name=name;
+            this.weight=weight;
+            this.gender=gender;
+            this.check=true;
+        }
+        isMale(){
+            return this.gender;
+        }
+        setGender(gender){
+            this.gender=gender
+        }
+        checkApple(Apple){
+            let a=Apple.isEmpty();
+          if(a){
+             return  this.check=true;
+          }else {
+              return  this.check=false;
+          }
+        }
+        Eat(Apple){
+            let b =this.checkApple(Apple);
+           if(b){
+               this.weight++
+               Apple.setDecrease()
+               alert("Can nang la"+this.weight+"qua tao: "+Apple.getWeight())
+           }else {
+               alert("tao an het roi")
+           }
+        }
+        Say(){
+            console.log("alo alo")
+        }
+        getName(){
+            return this.name
+        }
+        setName(name){
+            this.name=name;
+        }
+        getWeight(){
+            return this.weight;
+        }
+        setWeight(weigth){
+            this.weight=weigth;
+        }
+    }
+    let tao1=new Apple(10)
+    let Nguoi1=new Human("hihi",50,"gai");
+    Nguoi1.Eat(tao1);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class SwitchButton{
+        constructor(status,lamp) {
+            this.status=status;
+            this.lamp=lamp;
+        }
+        ConnectToLamp(ElectricLamp){
+        if(this.status){
+            return ElectricLamp.TurnOn();
+        }else {
+            return ElectricLamp.TurnOff();
+        }
+        }
+        SwitchOff(){
+            this.status=false;
+        }
+        switchOn(){
+            this.status=true;
+        }
+    }
+    class ElectricLamp{
+        constructor(status) {
+            this.status=status;
+        }
+        TurnOff(){
+            alert("Đèn đã tắt")
+        }
+        TurnOn(){
+            alert("Đèn đã bật")
+        }
+    }
+    let lamp1=new ElectricLamp(true);
+    let swich = new SwitchButton();
+    swich.switchOn();
+    swich.ConnectToLamp(lamp1)
+
+
+
+</script>
+</body>
+</html>

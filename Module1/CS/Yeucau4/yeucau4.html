@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arrayNameCustomer =[];
+        while (true) {
+        let choose =parseInt(prompt("1.Thêm Mới Khách Hàng "+"\n"+"2.xóa Khách Hàng"))
+        switch(choose){
+            case 1:{
+        let number =parseInt(prompt("Số lượng khách hàng"));
+                for(let i=0;i<number;i++){
+        let nameCustomer = prompt("Nhập tên khách hàng:");
+        arrayNameCustomer.push(nameCustomer);
+                }
+                for(let i=0;i<arrayNameCustomer.length;i++){
+                    alert(arrayNameCustomer[i])
+                } 
+                let result="";
+                arrayNameCustomer.sort();
+                for(let i=0;i<arrayNameCustomer.length;i++){
+                    result+=(i+1)+"."+arrayNameCustomer[i]+"\n";
+                }
+                alert(result)
+                break;
+            }
+            case 2:{
+            let check=false;
+            let nameCustomer=prompt("Khách hàng muốn xóa");
+                for(let i=0;i<arrayNameCustomer.length;i++){
+                    if(arrayNameCustomer[i]===nameCustomer){
+                        arrayNameCustomer.splice(i,1);
+                        check=true
+                    }
+                }
+                if(!check){
+                    alert("Tên của bạn muốn xóa k có trong mảng")
+                }
+                let result="";
+                arrayNameCustomer.sort();
+                for(let i=0;i<arrayNameCustomer.length;i++){
+                    result+=(i+1)+"."+arrayNameCustomer[i]+"\n";
+                }
+                alert(result)
+                break;
+                
+            }
+            
+            default:{
+                alert("Failed");
+            }
+        }
+    }
+    </script>
+</body>
+</html>

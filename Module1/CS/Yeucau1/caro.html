@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <title>GokiSoft </title>
+
+</head>
+<body>
+
+
+
+
+<body>
+
+<div id = "container">
+    <div id = "board-area" class="content-area">
+
+        <div id="info-board">
+            <span id="oppo1-time" class="time"> 00:00 </span> 
+            <img id="oppo1-avartar" class="oppo-avt" src="img/oppo-warren.png">
+            <img id="vs" src="img/vs.png">
+            <img id="oppo2-avartar" class="oppo-avt" src="img/doraemon.png">  
+            <span id="oppo2-time" class="time"> 00:00 </span>
+            <br/>
+            <a href="#" style="font-weight:bold;"> Đại Ca </a><img style="width:16px;" src="./img/x.png"> đấu với <a href="#" style="font-weight:bold;"> Doraemon </a><img style="width:16px;" src="./img/o.png">
+
+        </div>
+        <div id="board">
+            Vui lòng kích hoạt javascript trên trình duyệt của bạn để tải trò chơi!
+        </div>
+        <div id="board-cpanel">
+
+            <button class="btn1 btn-med" id="newGame" onclick="ctrl.newGame()">
+                <i class="fa fa-gamepad fa-2x" aria-hidden="true"></i> Ván mới</button>
+
+            <button class="btn1 btn-med" id="resign" onclick="ctrl.resign()">
+                <i class="fa fa-flag-o fa-2x" aria-hidden="true"></i> Chịu thua</button>
+
+            <button class="btn1 btn-med" id="undo" onclick="ctrl.undo()">
+                <i class="fa fa-undo fa-2x" aria-hidden="true"></i> Xin đi lại</button>
+
+            <button class="btn1 btn-med" id="quit" onclick="ctrl.standUp()">
+                <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i> Thoát</button>
+
+        </div>
+    </div>
+
+
+    <h1 id="logo">CARO ONLINE</h1>
+    <center><span style="font-size: 12px; font-weight:bold;">Chơi cờ Caro trực tuyến cùng bạn bè!</span></center>
+
+
+    <div id = "chat" class="content-area">
+        <span class="content-area-title"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</span>
+        <div id="chat-content" class="info"></div>
+        <input id="chat-message" class="tbox1" type="text" placeholder="Enter để gửi">
+        <button id="chat-send" class="btn1 btn-med" type="submit"><i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i></button>
+    </div>
+
+    <div id = "notify" class="content-area">
+        <span class="content-area-title"><i class="fa fa-info" aria-hidden="true"></i> Thông tin từ hệ thống</span>
+        <div id="notify-content" class="info"></div>
+    </div>
+</div>
+
+<footer class="content-area">
+    <p>Online Caro by <a href="https://www.vannotes.com/about-me/">Viet Anh</a></p>
+</footer>
+
+
+
+<script>
+    function AIthink(player, move){ // AI will think for a player.
+        var XX,YY;
+        if (player == O){
+            alphabeta(O, -Infinity, Infinity, 2);
+        } else {
+            alphabeta(X, -Infinity, Infinity, 2);
+        }
+        move.row = XX; move.col=YY;
+        function cval(){  // evaluate the board
+            var cval_value = 0;
+            var val = function(XO){
+                var mArray = []; //Match [^1][01][01][01][01][01]0
+                var value = 0;
+                var count = 0 // count the number of pieces
+                var regexp = (XO == X) ? /[^1][01][01][01][01][01]0/g : /[^2][02][02][02][02][02]0/g;
+                var regexp2 = (XO == X) ? /0[01][01][01][01][01][^1]/g : /0[02][02][02][02][02][^2]/g;
+                var	regexp3 = (XO == X) ? /1/g : /2/g;
+                mArray = valStr.match(regexp).concat(valStr.match(regexp2));
+                for (var x in mArray) {
+                    count = (mArray[x].match(regexp3) || []).length; //number of XO;
+                    switch (count) {
+                        case 5: value += 9999999; break;
+                        case 4: value += 1000; break;
+                        case 3: value += 10; break;
+                        case 2: value += 1; break;
+                    }
+                }
+                return value;
+            }
+            // horizontally eval (col +-)
+            var valStr = ''; //1:X, 2: O, 0: Empty or Out of Board, 3: concat two line
+            for (var i = 0; i < currGame.noOfRow; i++) {
+                valStr += '0' + currGame.sq[i].join('') + '03';
+            }
+
+            // vertically eval (row +-)
+            //1:X, 2: O, 0: Empty or Out of Board, 3: concat two line
+            for (var j = 0; j < currGame.noOfCol; j++) {
+                valStr += '0';
+                for (var i = 0; i < currGame.noOfRow; i++) {
+                    valStr += currGame.sq[i][j];
+                }
+                valStr += '03';
+            }
+            // dia from top
+            //1:X, 2: O, 0: Empty or Out of Board, 3: concat two line
+            for (var k = 0; k < currGame.noOfCol; k++) {
+                valStr += '0';
+                i=0; j=k;
+                while (i < currGame.noOfRow && j < currGame.noOfCol){
+                    valStr += currGame.sq[i][j];
+                    i++; j++;
+                }
+                valStr += '03';
+            }
+            for (var k = 0; k < currGame.noOfCol; k++) {
+                valStr += '0';
+                i=0; j=k;
+                while (i < currGame.noOfRow && j >= 0){
+                    valStr += currGame.sq[i][j];
+                    i++; j--;
+                }
+                valStr += '03';
+            }
+            // dia from bottom
+            for (var k = 0; k < currGame.noOfCol; k++) {
+                valStr += '0';
+                i=currGame.noOfRow-1; j=k;
+                while (i >= 0 && j >= 0){
+                    valStr += currGame.sq[i][j];
+                    i--; j--;
+                }
+                valStr += '03';
+            }
+            for (var k = 0; k < currGame.noOfCol; k++) {
+                valStr += '0';
+                i=currGame.noOfRow-1; j=k;
+                while (i >= 0 && j < currGame.noOfCol){
+                    valStr += currGame.sq[i][j];
+                    i--; j++;
+                }
+                valStr += '03';
+            }
+            cval_value = val(O) - val(X);
+            return cval_value;
+        };
+        function alphabeta(XO,alpha,beta, depth){
+            if (referee.isWin() == X){
+                return -999999999;
+            }
+            if (referee.isWin() == O){
+                return 999999999;
+            }
+            if (depth==0){
+                return cval();
+            }
+            var moveGen = function (XO){
+                this.moveRow = new Array();
+                this.moveCol = new Array();
+                this.noOfMove = 0;
+                var possi = new Array(); /* define an array storing possible position */
+                for (var i = 0; i < currGame.noOfRow; i++) {
+                    possi[i] = new Array();
+                    for (var j = 0; j < currGame.noOfCol; j++) {
+                        possi[i][j]=false;
+                    }
+                }
+                for (var i = 0; i < currGame.noOfRow; i++) {
+                    for (var j = 0; j < currGame.noOfCol; j++) {
+                        if ((currGame.sq[i][j] == Empty) && (!possi[i][j])){
+                            for (var stepI = -1; stepI <= 1; stepI++) {
+                                for (var stepJ = -1; stepJ <= 1; stepJ++) {
+                                    if (i+stepI>=0 && i+stepI<currGame.noOfRow && j+stepJ>=0 && j+stepJ<currGame.noOfCol){
+                                        if (currGame.sq[i+stepI][j+stepJ] != Empty){
+                                            possi[i][j] = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                for (var i = 0; i < currGame.noOfRow; i++) {
+                    for (var j = 0; j < currGame.noOfCol; j++) {
+                        if (possi[i][j]){
+                            this.noOfMove++;
+                            this.moveRow[this.noOfMove]=i;
+                            this.moveCol[this.noOfMove]=j;
+
+                        }
+                    }
+                }
+            }
+            var makeMove = function(moveBoard, movePointer, XO){
+                currGame.sq[moveBoard.moveRow[movePointer]][moveBoard.moveCol[movePointer]] = XO;
+            }
+            var undoMove = function(moveBoard, movePointer){
+                currGame.sq[moveBoard.moveRow[movePointer]][moveBoard.moveCol[movePointer]] = Empty;
+            }
+            var gen = new moveGen(XO);
+            var movePointer = 1;
+            var score;
+            if(XO == O){ //Max's currGame.Turn
+                while(movePointer <= gen.noOfMove){
+                    makeMove(gen, movePointer, XO);
+                    score = alphabeta(X, alpha, beta, depth-1);
+                    undoMove(gen, movePointer);
+                    if (score > alpha){
+                        XX = gen.moveRow[movePointer];
+                        YY = gen.moveCol[movePointer];
+                        alpha = score; //(we have found a better best move)
+                    }
+                    if (alpha >= beta){
+                        return alpha //(cut off);
+                    }
+                    movePointer++;
+                }
+                return alpha; //best move
+            } else { //Min's currGame.Turn
+                while(movePointer <= gen.noOfMove){
+                    makeMove(gen, movePointer, XO);
+                    score = alphabeta(O, alpha, beta, depth-1);
+                    undoMove(gen, movePointer);
+                    if (score < beta){
+                        beta = score; //(opponent has found a better worse move)
+                    }
+                    if (alpha >= beta) return beta //(cut off);
+                    movePointer++;
+                }
+                return beta; //(this is the opponent's best move)
+            }
+        }
+    }
+
+
+
+    var board = {
+        writeBoard: function(){
+            var st = '';
+            st = '<table id="board-table"><tbody>';
+            for(var i=0; i < currGame.noOfRow; i++){
+                st += '<tr>';
+                for(var j=0; j < currGame.noOfCol; j++){
+                    st += '<td class="square" id="s'+String('00' + i).slice(-2)+String('00' + j).slice(-2)+'" onclick="board.sqClick(' + i + ',' + j + ' )"></td>';
+                };
+                st += '</tr>';
+            }
+            st+= '</tbody></table>';
+            document.getElementById('board').innerHTML = st;
+            for(var i=0; i < currGame.noOfRow; i++){
+                for(var j=0; j < currGame.noOfCol; j++){
+                    board.sqUpdate(i,j);
+                }
+            }
+        },
+        sqUpdate: function(i,j){
+            var OHtml='<img src="https://res.cloudinary.com/wegoup/image/upload/v1589459651/yy0srvt5ifsa4loswzrq.png">';
+            var XHtml='<img src="https://res.cloudinary.com/wegoup/image/upload/v1589459679/ngw2r389uayfaga8otna.png">';
+            if (currGame.sq[i][j] == O){
+                document.getElementById('s'+String('00' + i).slice(-2)+String('00' + j).slice(-2)+'').innerHTML = OHtml;
+            } else if (currGame.sq[i][j] == X){
+                document.getElementById('s'+String('00' + i).slice(-2)+String('00' + j).slice(-2)+'').innerHTML = XHtml;
+            } else {
+                document.getElementById('s'+String('00' + i).slice(-2)+String('00' + j).slice(-2)+'').innerHTML = '';
+            }
+        },
+        sqMouseOver: function(row, col) {
+            if (currGame.isGamming && currGame.sq[row][col] == 0 && currGame.Turn == X) {
+                var HTML='<img style="opacity: 0.5" src="https://res.cloudinary.com/wegoup/image/upload/v1589459679/ngw2r389uayfaga8otna.png">';
+                document.getElementById('s'+String('00' + row).slice(-2)+String('00' + col).slice(-2)+'').innerHTML = HTML;
+            }
+        },
+        /* when click a currGame.square */
+        sqClick: function(row, col) {
+            if (currGame.isGamming && currGame.sq[row][col] == 0 && currGame.Turn == X) {
+                currGame.xMove(row, col);
+            }
+        },
+    };
+    var ctrl = {
+        newGame : function() {
+            currGame = new game(16, 16);
+            board.writeBoard();
+        },
+        undo : function() {
+            alert('Chơi với máy đã gà thế này rồi nên không có chơi lại nha! :D :D ');
+        },
+        resign : function() {
+            alert('Bạn đã chịu thua. :D :D');
+            currGame.isGamming = false;
+        },
+        standUp : function() {
+            if (currGame.Turn == X) {
+                var bestMove = {row: 0, col:0};
+                AIthink(X, bestMove);
+                currGame.sq[bestMove.row][bestMove.col] = X;
+                board.sqUpdate(bestMove.row, bestMove.col);
+                referee.checkWin();
+                currGame.Turn = O;
+                currGame.noOfPiece++;
+            } else {
+                var bestMove = {row:0, col:0};
+                AIthink(O, bestMove);
+                currGame.sq[bestMove.row][bestMove.col] = O;
+                board.sqUpdate(bestMove.row, bestMove.col);
+                referee.checkWin();
+                currGame.Turn = X;
+                currGame.noOfPiece++;
+            }
+        }
+    };
+
+    const X = 1, O = 2, Empty = 0;
+
+
+    var currGame = new game(16, 16);
+    board.writeBoard();
+
+
+    function game(noOfRow, noOfCol) {
+        this.noOfRow = noOfRow, this.noOfCol = noOfCol;
+        this.Turn = X;
+        this.isGamming = true; //currGame.isGamming or Not.
+        this.noOfPiece = 0; //number of Pieces on the table -> to check draw
+        this.sq = new Array(); /* define an array storing XO position */
+        for (var i = 0; i < this.noOfRow; i++) {
+            this.sq[i] = new Array();
+            for (var j = 0; j < this.noOfCol; j++) {
+                this.sq[i][j]=0;
+            }
+        }
+        this.sq[7][7] = X;
+        this.sq[7][8] = O;
+        this.sq[8][8] = X;
+        this.sq[8][7] = O;
+        this.xMove = function(i,j){
+            currGame.sq[i][j] = X;
+            board.sqUpdate(i, j);
+            currGame.noOfPiece++;
+            currGame.Turn = O;
+            referee.checkWin()
+            if (currGame.isGamming == false){
+                return;
+            }
+            var bestMove = {row:0, col:0};
+            AIthink(O, bestMove);
+            currGame.sq[bestMove.row][bestMove.col] = O;
+            board.sqUpdate(bestMove.row, bestMove.col);
+            currGame.Turn = X;
+            currGame.noOfPiece++;
+            referee.checkWin()
+        };
+    }
+
+    var referee = {
+        isWin: function(){
+            if (currGame.noOfPiece == currGame.noOfCol*currGame.noOfRow){
+                return 3; //Draw
+            }
+            // horizontally eval (col +-)
+            var valStr = ''; //1:X, 2: O, 0: Empty or Out of Board, 3: concat two line
+            for (var i = 0; i < currGame.noOfRow; i++) {
+                valStr += '0' + currGame.sq[i].join('') + '03';
+            }
+            // vertically eval (row +-)
+            //1:X, 2: O, 0: Empty or Out of Board, 3: concat two line
+            for (var j = 0; j < currGame.noOfCol; j++) {
+                valStr += '0';
+                for (var i = 0; i < currGame.noOfRow; i++) {
+                    valStr += currGame.sq[i][j];
+                }
+                valStr += '03';
+            }
+            // dia from top
+            //1:X, 2: O, 0: Empty or Out of Board, 3: concat two line
+            for (var k = 0; k < currGame.noOfCol; k++) {
+                valStr += '0';
+                i=0; j=k;
+                while (i < currGame.noOfRow && j < currGame.noOfCol){
+                    valStr += currGame.sq[i][j];
+                    i++; j++;
+                }
+                valStr += '03';
+            }
+            for (var k = 0; k < currGame.noOfCol; k++) {
+                valStr += '0';
+                i=0; j=k;
+                while (i < currGame.noOfRow && j >= 0){
+                    valStr += currGame.sq[i][j];
+                    i++; j--;
+                }
+                valStr += '03';
+            }
+            // dia from bottom
+            for (var k = 0; k < currGame.noOfCol; k++) {
+                valStr += '0';
+                i=currGame.noOfRow-1; j=k;
+                while (i >= 0 && j >= 0){
+                    valStr += currGame.sq[i][j];
+                    i--; j--;
+                }
+                valStr += '03';
+            }
+            for (var k = 0; k < currGame.noOfCol; k++) {
+                valStr += '0';
+                i=currGame.noOfRow-1; j=k;
+                while (i >= 0 && j < currGame.noOfCol){
+                    valStr += currGame.sq[i][j];
+                    i--; j++;
+                }
+                valStr += '03';
+            }
+
+            if (valStr.search(/[^1]111110/) != -1 || valStr.search(/011111[^1]/) != -1){
+                return 1
+            }
+            if (valStr.search(/[^2]222220/) != -1 || valStr.search(/022222[^2]/) != -1){
+                return 2
+            }
+
+        },
+        checkWin : function(){
+            var result = referee.isWin();
+            if ( result == 1){	//check from current currGame.sq: has  the current player won?
+                alert('X Thắng!');
+                currGame.isGamming = false;
+            } else if ( result == 2){
+                alert('O Thắng!');
+                currGame.isGamming = false;
+            } else if (result == 3) {  //check draw
+                alert('Hoà!');
+                currGame.isGamming = false;
+            }
+        },
+    };
+
+</script>
+</body>
+</html>

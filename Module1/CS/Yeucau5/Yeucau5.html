@@ -10,6 +10,15 @@
     <script src="checkEmail.js"></script>
     <script src="CheckName.js"></script>
     <script src="checkCmnd.js"></script>
+    <script src="jjjjjjjj.js"></script>
+    <script src="checkTinh.js"></script>
+    <script src="checkLoaivip.js"></script>
+    <script src="checkDiscount.js"></script>
+    <script src="checksoLuong.js"></script>
+    <script src="checkRentdays.js"></script>
+    <script src="checkService.js"></script>
+    <script src="checkRoomtype.js"></script>
+
 
     <script>
     let information=[];
@@ -65,30 +74,30 @@
         let customer=[];
         name=checkName();
         customer.push(name)
-        cmnd=prompt("Nhập CMND")
+        cmnd=checkCM(cmnd)
         customer.push(cmnd)
-        date_birth=prompt("Ngày sinh");
+        date_birth=checkday();
         customer.push(date_birth)
         email= checkEmail();
         customer.push(email)
         address=prompt("Nhập địa chỉ");
         customer.push(address)
-        province=prompt("Nhập tỉnh")
+        province=checkProvince();
         customer.push(province);
-        Vip=prompt("Nhập loại vip")
+        Vip=checkVip();
         customer.push(Vip)
-        discount=prompt("Nhập giảm giá")
+        discount=checkDiscount();
         customer.push(discount)
-        adults=prompt("số người lớn đi kèm")
+        adults=checkAdults();
         customer.push(adults)
-        child=prompt("số trẻ em di kèm")
+        child=checkChild();
         customer.push(child)
-        rentDays=prompt("Nhập số ngày thuê")
+        rentDays=checkRentdays();
         customer.push(rentDays)
-        service=prompt("Nhập loại dich vụ")
-        customer.push(service)
-        roomType=prompt("Nhập loại Phòng")
-        customer.push(roomType)
+        service=checkService();
+        customer.push(service);
+        roomType=checkRoomtype();
+        customer.push(roomType);
         information[information.length] = customer;
     }
 

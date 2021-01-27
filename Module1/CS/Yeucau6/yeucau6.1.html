@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border-radius: 5px;
+            background-color:yellowgreen;
+           border-top: 1px;
+            border-left: 1px;
+            border-right: 1px;
+            border-bottom:1px;
+
+        }
+        input{
+            background-color:lightslategrey;
+            width: 170px;
+            height: 40px;
+            color: cornflowerblue;
+            border-radius: 7px;
+        }
+    </style>
+</head>
+<body>
+
+<input type="button" value="Thêm Khách Hàng" onclick="addCustomer()">
+<input type="button" value="Nhân Viên" onclick="addNewEmployee()">
+<p id="hienThi"></p>
+<p id="1"></p>
+    <script src="checkID.js"></script>
+    <script src="checkEmail.js"></script>
+    <script src="CheckName.js"></script>
+    <script src="checkCmnd.js"></script>
+    <script src="jjjjjjjj.js"></script>
+    <script src="checkTinh.js"></script>
+    <script src="checkLoaivip.js"></script>
+    <script src="checkDiscount.js"></script>
+    <script src="checksoLuong.js"></script>
+    <script src="checkRentdays.js"></script>
+    <script src="checkService.js"></script>
+    <script src="checkRoomtype.js"></script>
+<script>
+    class Customer{
+        constructor(name,cardID,dateBirth,email,address,province,vip,discount,adults,child,rentDays,service,roomType) {
+            this.name=name;
+            this.cardID=cardID;
+            this.dateBirth=dateBirth;
+            this.email=email;
+            this.address=address;
+            this.province=province;
+            this.vip=vip;
+            this.discount=discount;
+            this.adults=adults;
+            this.child=child;
+            this.rentDays=rentDays;
+            this.service= service;
+            this.roomType = roomType;
+        }
+        getName(){
+            return this.name;
+        }
+        setName(name){
+            this.name=name;
+        }
+        getcardID(){
+            return this.cardID;
+        }
+        setcardID(cardID){
+            this.cardID=cardID;
+        }
+        getBirth(){
+            return this.dateBirth;
+        }
+        setBirth(dateBirth){
+            this.dateBirth=dateBirth;
+        }
+        getEmail(){
+            return this.email;
+        }
+        setEmail(email){
+            this.email=email;
+        }
+        getAddress(){
+            return this.address;
+        }
+        setAddress(address){
+            this.address=address;
+        }
+        getProvince(){
+            return this.province;
+        }
+        setProvince(province){
+            this.province=province;
+        }
+        getVip(){
+            return this.vip;
+        }
+        setVip(vip){
+            this.vip=vip;
+        }
+        getDiscount(){
+            return this.discount;
+        }
+        setDiscount(discount){
+            this.discount=discount;
+        }
+        getAdults(){
+            return this.adults;
+        }
+        setAdults(adults){
+            this.adults=adults;
+        }
+        getChild(){
+            return this.child;
+        }
+        setChild(child){
+            this.child=child;
+        }
+        getRentDays(){
+            return this.rentDays;
+        }
+        setRentDays(rentDays){
+            this.rentDays=rentDays;
+        }
+        getService(){
+            return this.service;
+        }
+        setService(service){
+            this.service=service;
+        }
+        getRoomType(){
+            return this.roomType;
+        }
+        setRoomType(roomType){
+            this.roomType=roomType;
+        }
+        payout(){
+            let sv;
+            switch (this.getService()) {
+                case "Villa": sv = 500;
+                    break;
+                case "House": sv = 300;
+                    break;
+                case "Room": sv = 100;
+                    break;
+            }
+            return (this.rent_days*sv*(1-this.discount/100));
+        }
+        getInfo() {
+            return "1.Tên Khách Hàng: " + this.name + "\n2. Số CMND: " + this.cardID +
+                "\n3. Ngay sinh: " + this.dateBirth + "\n 4. Email: " + this.email +
+                    "\n4. Địa Chỉ: "+ this.address + "\n 5. Nhập Tỉnh: "+this.province +
+                "\n6. Loại Vip"+this.vip+"\n7. Nhập giảm giá: "+this.discount +"\n 8.Người lớn: "+this.adults+
+                "\n9. Trẻ em:"+this.child+"\n9. Số Ngày thuê"+this.discount+"\n10. Loại dịch vụ"+this.service+
+                "\n11. Loại Phòng"+this.roomType;
+        }
+
+    }
+    information=[];
+    function addCustomer(){
+        let name ;
+        let cardID ;
+        let dateBirth;
+        let email ;
+        let address;
+        let province ;
+        let vip ;
+        let discount;
+        let adults ;
+        let child;
+        let rentDays ;
+        let service ;
+        let roomType;
+
+        name=checkName(name)
+
+        cardID=checkCM()
+
+        dateBirth=checkday()
+
+        email=checkEmail();
+
+        address=prompt("Nhập địa chỉ");
+
+        province=checkProvince();
+
+        vip=checkVip();
+
+        discount=checkDiscount();
+
+        adults=checkAdults();
+
+        child=checkChild();
+
+        rentDays=checkRentdays();
+
+        service=checkService();
+
+        roomType=checkRoomtype();
+
+        let customer = new Customer(name,cardID,dateBirth,email,address,province,vip,discount,adults,child,rentDays,service,roomType);
+
+        information.push(customer);
+        hienThi(information)
+
+    }
+
+    function deleteCustomers (id) {
+        let xacNhanXoa = confirm("bạn có muốn xóa Khách Hàng: "+ information[id].getName());
+        if (xacNhanXoa){
+            information.splice(id,1);
+        }else {
+            alert("bạn không muốn xóa");
+        }
+        hienThi(information);
+    }
+    function editInformation(i) {
+        let choose= prompt(information[i].getInfo()+
+            '\n14. Thoát');// hiện thị bảng để chọn tông tin cấn sửa.
+        switch (choose) {
+            case "1":
+                let name=prompt("Nhập Họ tên");
+                information[i].setName(name);
+                editInformation(i);
+                break;
+            case "2":
+                let cardID =prompt("Nhập CMND");
+                information[i].setcardID(cardID);
+                editInformation(i);
+                break;
+            case "3":
+                let dateBirth=prompt("Nhập Ngày sinh");
+                information[i].setDateOfBirth(dateBirth);
+                editInformation(i);
+                break;
+            case "4":
+                let email=prompt("Nhập email");
+                information[i].setEmail(email);
+                editInformation(i);
+                break;
+            case "5":
+                let address=prompt("Nhập Địa chỉ");
+                information[i].setAddress(address);
+                editInformation(i);
+                break;
+            case "6":
+                let province=prompt("Nhập Tỉnh");
+                information[i].setProvince(province);
+                editInformation(i);
+                break;
+            case "7":
+                let vip=prompt("Nhập Loại Vip");
+                information[i].setAddress(vip);
+                editInformation(i);
+                break;
+            case "8":
+                let discount=prompt("Nhập mã giảm giá");
+                information[i].setDiscount(discount);
+                editInformation(i);
+                break;
+            case "9":
+                let adults=prompt("số người lớn đi kèm ");
+                information[i].setAdults(adults);
+                editInformation(i);
+                break;
+            case "10":
+                let child=prompt("Số trẻ em đi kèm");
+                information[i].setChild(child);
+                editInformation(i);
+                break;
+            case "11":
+                let rentDays=prompt("Nhập số ngày thuê");
+                information[i].setRentDays(rentDays);
+                editInformation(i);
+                break;
+            case "12":
+                let service=prompt("Nhập loại dich vụ");
+                information[i].setService(service);
+                editInformation(i);
+                break;
+            case "13":
+                let roomType=prompt("Nhập loại phòng");
+                information[i].setRoomType(roomType);
+                editInformation(i);
+                break;
+
+        }
+        hienThi(information);
+    };
+    function hienThi(information) {
+
+        let bang = '<table border="1">\n' +
+            '    <tr>\n' +
+            '        <th>Họ Và Tên</th>\n' +
+            '        <th>CMND</th>\n' +
+            '        <th>Ngày Sinh</th>\n' +
+            '        <th>Email</th>\n' +
+            '        <th>Địa Chỉ</th>\n' +
+            '        <th>Tỉnh</th>\n' +
+            '        <th>Vip</th>\n' +
+            '        <th>Mã giảm giá</th>\n' +
+            '        <th>Người Lớn</th>\n' +
+            '        <th>Trẻ em</th>\n' +
+            '        <th>Số Ngày Thuê</th>\n' +
+            '        <th>Loại dịch vụ</th>\n' +
+            '        <th>Loại phòng thuê</th>\n' +
+            '    </tr>';
+        for (let i = 0; i < information.length; i++) {
+            bang += ' <tr>\n' +
+                '        <td>' + information[i].getName()+ '</td>\n' +
+                '        <td>' + information[i].getcardID() + '</td>\n' +
+                '        <td>' + information[i].getBirth() + '</td>\n' +
+                '        <td>' + information[i].getEmail() + '</td>\n' +
+                '        <td>' + information[i].getAddress() + '</td>\n' +
+                '        <td>' + information[i].getProvince() + '</td>\n' +
+                '        <td>' + information[i].getVip() + '</td>\n' +
+                '        <td>' + information[i].getDiscount() + '</td>\n' +
+                '        <td>' + information[i].getAdults() + '</td>\n' +
+                '        <td>' + information[i].getChild() + '</td>\n' +
+                '        <td>' + information[i].getRentDays() + '</td>\n' +
+                '        <td>' + information[i].getService() + '</td>\n' +
+                '        <td>' + information[i].getRentDays() + '</td>\n' +
+
+                '        <td><button onclick="editInformation(' + i + ')">Sửa</button></td>\n' +
+                '        <td><button onclick="deleteCustomers(' + i + ')">Xóa</button></td>\n' +
+                '    </tr>';
+        }
+        bang += '</table>';
+        document.getElementById("hienThi").innerHTML = bang;
+    }
+
+
+
+
+    class Employee{
+        constructor(ten,cmnd,ngaySinh,email,diaChi,viTri) {
+            this.ten=ten;
+            this.cmnd=cmnd;
+            this.ngaySinh=ngaySinh;
+            this.email=email;
+            this.diaChi=diaChi;
+            this.viTri=viTri;
+        }
+        getTen(){
+            return this.ten;
+        }
+        setTen(ten){
+            this.ten=ten;
+        }
+        getCMND(){
+            return this.cmnd;
+        }
+        setCMND(cmnd){
+            this.cmnd=cmnd;
+        }
+        getNgaySinh(){
+            return this.ngaySinh;
+        }
+        setNgaySinh(ngaySinh){
+            this.ngaySinh=ngaySinh;
+        }
+        getEmail(){
+            return this.email;
+        }
+        setEmail(email){
+            this.email=email;
+        }
+        getDiaChi(){
+            return this.diaChi;
+        }
+        setDiaChi(diaChi){
+            this.diaChi=diaChi;
+        }
+        getViTri(){
+            return this.viTri;
+        }
+        setViTri(viTri){
+            this.viTri=viTri;
+        }
+        salaryOfEmployee(){
+            let salary=0;
+            switch (this.viTri) {
+                case "Manager":
+                    salary=500+"$";
+                    break;
+                case "Sale":
+                    salary=300+"$";
+                    break;
+                case "Marketing":
+                    salary=200+"$";
+                    break;
+            }
+            return salary;
+        }
+        thongTin(){
+            return "1. Tên: " + this.ten + "\n2. CMND: " + this.cmnd +
+                "\n3. Ngay sinh: " + this.ngaySinh + "\n 4. Email: " + this.email
+                + "\n 5. Địa chỉ: " + this.diaChi+ "\n 6. Vị trí: " + this.viTri;
+        }
+    }
+    let listEmployees=[];
+
+    displayEmployee(listEmployees);
+    function sapXep (danhSach) {
+        danhSach.sort(function (a,b) {
+            let tenA=a.getTen();
+            let tenB=b.getTen();
+            if(tenA<tenB){
+                return -1;
+            }
+            if(tenA>tenB){
+                return 1;
+            }
+            return 0;
+        });
+        return danhSach;
+    }
+    function viTriJS() {
+        let viTri;
+        let check=false;
+        do{
+            viTri=prompt("+Nhập vị trí:" + "\n" + "+Chọn 1 trong 3: Manager-Sale-Marketing" + "\n"+"+Lưu ý: Nhập sai là nhập lại đó");
+            switch (viTri) {
+                case "Manager":
+                    check=true;
+                    break;
+                case "Sale":
+                    check=true;
+                    break;
+                case "Marketing":
+                    check=true;
+                    break;
+                default:
+                    check=false;
+            }
+        }while (!check);
+        return viTri;
+    }
+    function addNewEmployee(){
+        let arr1=[];
+        let n=prompt("so luong");
+        for(let i=0;i<n;i++){
+            let ten=prompt("Nhap ten")
+            let cmnd=prompt("nhap cmnd")
+            let ngaySinh=prompt("Nhap ngay sinh");
+            let email=prompt("Nhap email");
+            let diaChi=prompt("Nhap dia chi");
+            let viTri=prompt("Nhap vi tri");
+            arr1[i]=new Employee(ten,cmnd,ngaySinh,email,diaChi,viTri);
+            listEmployees.push(arr1[i]);
+        }
+        sapXep(listEmployees);
+        displayEmployee(listEmployees);
+    }
+    function displayEmployee(danhSach) {
+        sapXep(danhSach);
+        let tableString = '<table border="1" style="border-collapse: separate">\n' +
+            '<tr><button onclick="addNewEmployee()">Thêm mới</button></tr>'+
+            '    <tr>\n' +
+            '        <th>STT</th>\n' +
+            '        <th>Tên</th>\n' +
+            '        <th>CMND</th>\n'+
+            '        <th>Ngày Sinh</th>\n' +
+            '        <th>Email</th>\n' +
+            '        <th>Địa chỉ</th>\n' +
+            '        <th>Vị trí</th>\n' +
+            '        <th>Sửa</th>\n' +
+            '        <th>Xóa</th>\n' +
+            '        <th>Lương lậu</th>\n' +
+            '    </tr>';
+        for (let i = 0; i < danhSach.length; i++) {
+            tableString += '<tr>\n' +
+                '        <td>' + (i + 1) + '</td>\n' +
+                '        <td>' + danhSach[i].getTen() + '</td>\n' +
+                '        <td>' + danhSach[i].getCMND() + '</td>\n' +
+                '        <td>' + danhSach[i].getNgaySinh() + '</td>\n' +
+                '        <td>' + danhSach[i].getEmail() + '</td>\n' +
+                '        <td>' + danhSach[i].getDiaChi() + '</td>\n' +
+                '        <td>' + danhSach[i].getViTri() + '</td>\n' +
+                '        <td> <button onclick="editEmployee(' + i + ')">Sửa</button></td>\n' +
+                '        <td> <button onclick="deteleEmployee(' + i + ')">Xóa</button></td>\n' +
+                '        <td> <button onclick="tinhLuong('+i+')">Tổng tiền</button></td>\n' +
+                '    </tr>';
+        }
+        tableString += '</table>';
+        document.getElementById("1").innerHTML = tableString;
+    }
+    function editEmployee(id) {
+        let chon=prompt(' 0. Thoát'+'\n'+listEmployees[id].thongTin());
+        switch (chon) {
+            case "1":
+                let ten=nameCustomer();
+                listEmployees[id].setTen(ten);
+                editEmployee(id);
+                break;
+            case "2":
+                let cmnd=cmndCustomer();
+                listEmployees[id].setCMND(cmnd);
+                editEmployee(id);
+                break;
+            case "3":
+                let ngaySinh=birthdayCustomer();
+                listEmployees[id].setNgaySinh(ngaySinh);
+                editEmployee(id);
+                break;
+            case "4":
+                let email=emailCustomer();
+                listEmployees[id].setEmail(email);
+                editEmployee(id);
+                break;
+            case "5":
+                let diaChi=diaChiJS();
+                listEmployees[id].setDiaChi(diaChi);
+                editEmployee(id);
+                break;
+            case "6":
+                let viTri=viTri();
+                listEmployees[id].setViTri(viTri);
+                editEmployee(id);
+                break;
+            case "0":
+            case "":
+            case null:
+                break;
+            default:
+                alert("Chọn chưa đúng, hãy chọn lại");
+                editEmployee(id)
+        }
+        sapXep(listEmployees);
+        displayEmployee(listEmployees);
+    }
+    function deteleEmployee(id) {
+        let a=confirm("bạn muốn xóa?");
+        if(a){
+            listEmployees.splice(id,1);
+            displayEmployee(listEmployees);
+        }
+    }
+    function tinhLuong(id) {
+        let salary=0;
+        switch (listEmployees[id].getViTri()) {
+            case "Manager":
+                salary=500+"$";
+                break;
+            case "Sale":
+                salary=300+"$";
+                break;
+            case "Marketing":
+                salary=200+"$";
+                break;
+        }
+        return alert(salary);
+    }
+</script>
+</body>
+</html>
+
